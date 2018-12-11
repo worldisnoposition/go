@@ -1,0 +1,79 @@
+1.go语言函数定义格式如下
+func function_name( [parameter list] ) [return_types] {
+   函数体
+}
+2.返回多个值
+func swap(x, y string) (string, string) {
+   return y, x
+}
+3.参数函数
+   调用函数有2种方式，值传递，引用传递
+   值传递：以下方式实际上对于入参 来说没有交换值
+   func swap(x, y int) int {
+      var temp int
+
+      temp = x /* 保存 x 的值 */
+      x = y    /* 将 y 值赋给 x */
+      y = temp /* 将 temp 值赋给 y*/
+
+      return temp;
+   }
+   引用传递：以下方式实际上会交换2个入参的值
+   func swap(x *int, y *int) {
+      var temp int
+      temp = *x    /* 保持 x 地址上的值 */
+      *x = *y      /* 将 y 值赋给 x */
+      *y = temp    /* 将 temp 值赋给 y */
+   }
+4.函数用法 函数作为值，这个写法我真喜欢
+   func main(){
+      /* 声明函数变量 */
+      getSquareRoot := func(x float64) float64 {
+         return math.Sqrt(x)
+      }
+
+      /* 使用函数 */
+      fmt.Println(getSquareRoot(9))
+
+   }
+5.函数用法 闭包，这个写法要学习一下，
+   func getSequence() func() int {
+      i:=0
+      return func() int {
+         i+=1
+      return i  
+      }
+   }
+
+   func main(){
+      /* nextNumber 为一个函数，函数 i 为 0 */
+      nextNumber := getSequence()  //number就是getSequence返回的func()
+
+      /* 调用 nextNumber 函数，i 变量自增 1 并返回 */
+      fmt.Println(nextNumber())//打印1
+      fmt.Println(nextNumber())//打印2
+      fmt.Println(nextNumber())//打印3
+      
+      /* 创建新的函数 nextNumber1，并查看结果 */
+      nextNumber1 := getSequence()  
+      fmt.Println(nextNumber1())//打印1
+      fmt.Println(nextNumber1())//打印2
+   }
+6.方法 
+/* 定义结构体 */
+type Circle struct {
+  radius float64
+}
+
+func main() {
+  var c1 Circle
+  c1.radius = 10.00
+  fmt.Println("圆的面积 = ", c1.getArea())//注意这里可以用c1.getArea()方法
+}
+
+//该 method 属于 Circle 类型对象中的方法
+func (c Circle) getArea() float64 {
+  //c.radius 即为 Circle 类型对象中的属性
+  return 3.14 * c.radius * c.radius
+}
+
