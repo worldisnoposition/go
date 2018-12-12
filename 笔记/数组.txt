@@ -1,0 +1,32 @@
+1.数组定义方式
+    var variable_name [SIZE] variable_type
+  即：
+    var balance [10] float32
+2.初始化数组
+    var balance = [5]float32{1000.0,  2.0, 3.4, 7.0 ,50.0}
+    后面大括号里的内容长度不能大于前面方括号里的
+    var balance = [...]float32{1000.0, 2.0, 3.4, 7.0, 50.0}
+    如果忽略数组大小，那么会议后面大括号里的长度为数组长度
+3.多维数组
+    var arrayName [ x ][ y ] variable_type
+    初始化二维数组
+    a = [3][4]int{  
+        {0, 1, 2, 3} ,   /*  第一行索引为 0 */
+        {4, 5, 6, 7} ,   /*  第二行索引为 1 */
+        {8, 9, 10, 11},   /* 第三行索引为 2 */
+    }
+4.向函数传递数组
+    设定数组大小 //记得试一下，超出数组大小会怎样
+    void myFunction(param [10]int)
+    {
+    .
+    .
+    .
+    }
+    不设定数组大小
+    void myFunction(param []int)
+    {
+    .
+    .
+    .
+    }
