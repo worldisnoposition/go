@@ -1,0 +1,31 @@
+1.切片是对数组的抽象
+go语言的数组长度不可变，而go语言提供了一种内置类型切片（动态数组），与数组相比，长度是可变的，可以追加元素，在追加的过程中切片容量可能增大
+2.定义切片
+    1）你可以定义一个没有长度的数组来定义切片
+    var identifier []int 
+    2）使用make()函数创建切片
+    var slice1 []type = make([]type,len)
+    也可简写为
+    slice1 := make([]type,len)
+    也可以指定容量
+    make([]T,length,capacity)
+    这里len,lenth是数组长度也是切片的初始长度
+3.切片初始化
+    s := []int {1,2,3}//直接初始化切片
+    s := arr[:]//初始化切片，是数组arr的引用
+    s := arr[start:end]//将arr截取一段，作为一个切片
+    s := arr[start:]
+    s := arr[:end]
+    s := make([]int,len,cap)//通过内置函数，初始切片
+4.len()和cap()函数
+    len长度，cap容量
+5.空切片
+    一个切片在初始化之前默认是nil，长度是0
+6.切片的截取
+    切片可以通过设置上下界来截取
+    [start:end]
+7.append()和copy()函数
+    append()添加元素
+    copy()拷贝切片
+    
+

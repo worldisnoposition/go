@@ -22,6 +22,7 @@ func greet(i ISayHello){
 }
 
 func Test() {
+
     ameriacal := AmericalPerson{}
     chinese := ChinesePerson{}
     var i ISayHello
@@ -29,4 +30,5 @@ func Test() {
     i.sayHello()
     i = chinese
     i.sayHello()
+    ameriacal.sayHello()
 }

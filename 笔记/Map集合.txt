@@ -1,0 +1,15 @@
+1.map是无序键值对集合。map通过key快速检索value。map通过hash表实现，是无序的。
+2.定义map
+var map_variable map[key_data_type] value_data_type
+countryCapitalMap := map[string]string{"France": "Paris", "Italy": "Rome", "Japan": "Tokyo", "India": "New delhi"}//创建map
+countryCapitalMap["France"]//map的value就这样出来了
+
+
+var countryCapitalMap map[string]string /*创建集合 */
+    countryCapitalMap = make(map[string]string)
+
+    /* map插入key - value对,各个国家对应的首都 */
+    countryCapitalMap [ "France" ] = "Paris"
+    countryCapitalMap [ "Italy" ] = "罗马"
+    countryCapitalMap [ "Japan" ] = "东京"
+    countryCapitalMap [ "India " ] = "新德里"

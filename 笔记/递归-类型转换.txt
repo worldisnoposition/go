@@ -1,2 +1,9 @@
 1.go语言递归就是在运行过程中调用自己
 没什么好说的，就是自己调用自己，记得设置一个推出条件
+2.类型转换用于将一种类型的变量转换成另一种类型的变量，基本格式如下
+type_name(expression)
+ var sum int = 17
+   var count int = 5
+   var mean float32
+   
+   mean = float32(sum)/float32(count)

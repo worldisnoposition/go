@@ -1,0 +1,18 @@
+1.结构体定义一个新的数据类型，结构体中有一个或多个成员
+type Books struct {
+   title string
+   author string
+   subject string
+   book_id int
+}
+2.一旦定义了结构体，它就能用于变量的声明，语法格式如下
+variable_name := structure_variable_type {value1, value2...valuen}
+或
+variable_name := structure_variable_type { key1: value1, key2: value2..., keyn: valuen}
+3.访问结构体成员
+结构名.成员名
+4.结构体指针
+你可以定义指向结构体的指针，类似于其他指针变量
+var struct_pointer *Books //取得指针地址
+var struct_pointer &Book1
+struct_pointer.title   //这句和上面那句合起来，访问了结构体的结构体成员

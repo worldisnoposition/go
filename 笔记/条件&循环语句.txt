@@ -48,6 +48,7 @@
         a++
     }
     numbers := [6]int{1,2,3,5}//长度为6，后2个默认就是0
+    
     for i,x:=range numbers{
 
     }

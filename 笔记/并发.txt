@@ -1,0 +1,53 @@
+1.go语言支持并发，我们只需要通过go关键字开启goroutine即可。
+go 函数名(参数列表)
+例如：
+go f(x,y,z)
+2.go语言允许go语句开启一个新的运行期线程，即goroutine,以一个不同的goroutine来执行函数。同一个函数中的所有goroutine共享同一块地址空间
+以下代码 hello world的输出是无序的
+func say(s string) {
+    for i := 0; i < 5; i++ {
+        time.Sleep(100 * time.Millisecond)
+        fmt.Println(s)
+    }
+}
+
+func main() {
+    go say("world")
+    say("hello")
+}
+3.通道channel 是用来传递数据的一种数据结构，通道可用于2个goroutine之间通过传递一个指定类型的值来同步运行和通信。操作符<-用于指定通道的
+方向，发送或接收。如果未指定方向则为双通道。
+ch <- v//把v发送到通道ch
+v := <- ch//从ch接受数据并赋值给v
+声明一个通道很简单，使用chan关键字即可，通道在使用前必须先创立
+ch := make(chan int)
+默认情况下，通道是不带缓冲区的。发送端发送数据，同时必须有接收端接收数据。
+以下实例通过goroutine来计算2个数字之和
+func sum(s []int, c chan int) {
+    sum := 0
+    for _, v := range s {
+        sum += v
+    }
+    c <- sum // 把 sum 发送到通道 c
+}
+
+func main() {
+    s := []int{7, 2, 8, -9, 4, 0}
+
+    c := make(chan int)
+    go sum(s[:len(s)/2], c)
+    go sum(s[len(s)/2:], c)
+    x, y := <-c, <-c // 从通道 c 中接收
+
+    fmt.Println(x, y, x+y)
+}
+4.通道缓冲区，通道可以设置缓冲区
+ch := make(chan int,100)
+缓冲区允许发送和接收端异步操作。
+如果通道不带缓冲区，发送方会阻塞直到接收方接收到了值。
+如果通道带缓冲区，发送方会阻塞直到发送的值被拷贝到了缓冲区；若缓冲区已满，则意味着需等待某个接收方，接受数据之前会一直阻塞。
+5.go遍历通道与关闭通道
+go语言通过range关键字来实现遍历读取通道的数据，类似于数组或切片。格式如下：
+v, ok := <- ch
+如果通道接收不到数据后，ok就是false，这是就可以使用close关闭通道
+close(ch)
